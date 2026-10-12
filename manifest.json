@@ -1,0 +1,22 @@
+{
+  "name": "Clanect - Classroom App",
+  "short_name": "Clanect",
+  "description": "Exclusive mobile app for classroom updates, study tracking, canteen alerts, timetable, notes, and chat.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#F8FAFC",
+  "theme_color": "#6366F1",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

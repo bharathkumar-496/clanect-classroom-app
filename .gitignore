@@ -1,0 +1,5 @@
+node_modules/
+.DS_Store
+.vercel/
+.netlify/
+create_db.js

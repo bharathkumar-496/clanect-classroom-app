@@ -1,0 +1,960 @@
+/* Clanect Mobile Application - Premium iOS Design System */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --color-indigo: #6366F1;
+  --color-indigo-light: #EEF2FF;
+  --color-indigo-dark: #4338CA;
+  --color-sky: #60A5FA;
+  --color-sky-light: #EFF6FF;
+  --color-mint: #6EE7B7;
+  --color-mint-light: #ECFDF5;
+  --color-mint-dark: #059669;
+  --color-lavender: #C4B5FD;
+  --color-lavender-light: #F5F3FF;
+  --color-white: #FFFFFF;
+  --color-bg: #F8FAFC;
+  --color-card-bg: #FFFFFF;
+  --color-text-main: #0F172A;
+  --color-text-sub: #64748B;
+  --color-text-muted: #94A3B8;
+  --color-border: #E2E8F0;
+  
+  --radius-card: 28px;
+  --radius-pill: 9999px;
+  --radius-button: 20px;
+  
+  --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.03);
+  --shadow-md: 0 10px 25px -5px rgba(99, 102, 241, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 20px 35px -10px rgba(99, 102, 241, 0.15), 0 10px 15px -5px rgba(15, 23, 42, 0.06);
+  --shadow-glow: 0 0 25px rgba(99, 102, 241, 0.35);
+  
+  --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --transition-fast: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: #0f172a;
+  color: var(--color-text-main);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  overflow-x: hidden;
+}
+
+/* Mobile Frame Wrapper for Desktop Preview & Mobile Viewport */
+.device-frame {
+  width: 100%;
+  max-width: 430px;
+  height: 880px;
+  background-color: var(--color-bg);
+  border-radius: 48px;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6), inset 0 0 0 10px #1E293B;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 0;
+    background-color: var(--color-bg);
+  }
+  .device-frame {
+    max-width: 100%;
+    height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+/* Dynamic iOS Status Bar */
+.status-bar {
+  height: 48px;
+  padding: 14px 24px 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--color-text-main);
+  z-index: 100;
+}
+.status-bar-icons {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* App Header */
+.app-header {
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(248, 250, 252, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 90;
+  position: sticky;
+  top: 0;
+}
+
+.brand-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand-logo-small {
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, var(--color-indigo), var(--color-sky), var(--color-lavender));
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 20px;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+  position: relative;
+  transition: var(--transition-bounce);
+}
+.brand-logo-small i {
+  animation: iconMiniPulse 2.5s ease-in-out infinite;
+}
+@keyframes iconMiniPulse {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.12) rotate(-5deg); }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.brand-title {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, var(--color-indigo-dark), var(--color-indigo));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.header-actions {
+  display: flex;
+  gap: 10px;
+}
+.icon-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 16px;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-text-main);
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-fast);
+  position: relative;
+}
+.icon-btn:active {
+  transform: scale(0.92);
+}
+.badge-dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 10px;
+  height: 10px;
+  background-color: #EF4444;
+  border: 2px solid var(--color-white);
+  border-radius: 50%;
+}
+
+/* Scrollable Screen Content Container */
+.screen-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px 100px 20px;
+  scroll-behavior: smooth;
+}
+.screen-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Screen Visibility */
+.screen {
+  display: none;
+  animation: fadeIn 0.35s ease-out;
+}
+.screen.active {
+  display: block;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* iOS Floating Bottom Navigation Bar */
+.bottom-nav-container {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  height: 72px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 28px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  z-index: 95;
+}
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-text-sub);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  padding: 8px 12px;
+  border-radius: 18px;
+}
+.nav-item i {
+  font-size: 20px;
+  transition: var(--transition-bounce);
+}
+.nav-item.active {
+  color: var(--color-indigo);
+  background: var(--color-indigo-light);
+}
+.nav-item.active i {
+  transform: translateY(-2px) scale(1.15);
+}
+
+/* Common Card Styling - 28px iOS Radius */
+.card {
+  background: var(--color-card-bg);
+  border-radius: var(--radius-card);
+  padding: 22px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(226, 232, 240, 0.7);
+  transition: var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+.card-hover:active {
+  transform: scale(0.98);
+}
+
+/* Typography & Headers */
+.section-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--color-text-main);
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.see-all {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-indigo);
+  cursor: pointer;
+}
+
+/* 1. Splash Screen */
+.splash-wrapper {
+  min-height: 720px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 20px;
+  text-align: center;
+  background: linear-gradient(180deg, #EEF2FF 0%, #F8FAFC 100%);
+}
+.splash-content {
+  margin-auto: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.splash-icon {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, var(--color-indigo), var(--color-sky), var(--color-lavender));
+  background-size: 200% 200%;
+  animation: gradientShift 5s ease infinite, float3DTilt 4s ease-in-out infinite;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
+  color: white;
+  margin-bottom: 32px;
+  position: relative;
+  box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4), 0 0 50px rgba(99, 102, 241, 0.25);
+  cursor: pointer;
+  transition: var(--transition-bounce);
+}
+
+/* Rotating Gradient Aura Ring */
+.splash-icon::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  border-radius: 44px;
+  background: linear-gradient(45deg, #6366F1, #6EE7B7, #60A5FA, #C4B5FD, #6366F1);
+  background-size: 300% 300%;
+  z-index: -1;
+  animation: auraRotate 4s linear infinite;
+  opacity: 0.85;
+  filter: blur(2px);
+}
+
+/* Pulsing Outer Expanding Glow Halo */
+.splash-icon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 40px;
+  background: rgba(99, 102, 241, 0.4);
+  z-index: -2;
+  animation: pulseHalo 2.5s ease-out infinite;
+}
+
+.splash-icon i {
+  animation: iconGlowPulse 2.5s ease-in-out infinite;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+}
+
+.splash-icon:active {
+  transform: scale(0.92) rotate(-6deg);
+}
+
+@keyframes float3DTilt {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+  }
+  25% {
+    transform: translateY(-12px) rotate(-3deg) scale(1.03);
+  }
+  50% {
+    transform: translateY(-16px) rotate(0deg) scale(1.05);
+  }
+  75% {
+    transform: translateY(-8px) rotate(3deg) scale(1.02);
+  }
+}
+
+@keyframes auraRotate {
+  0% { background-position: 0% 50%; transform: rotate(0deg); }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; transform: rotate(360deg); }
+}
+
+@keyframes pulseHalo {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.45);
+    opacity: 0;
+  }
+}
+
+@keyframes iconGlowPulse {
+  0%, 100% {
+    transform: scale(1) rotate(0deg);
+    filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+  }
+  50% {
+    transform: scale(1.18) rotate(-8deg);
+    filter: drop-shadow(0 8px 20px rgba(255, 255, 255, 0.8));
+  }
+}
+
+.splash-title {
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--color-text-main);
+  letter-spacing: -1px;
+  margin-bottom: 10px;
+}
+.splash-subtitle {
+  font-size: 16px;
+  color: var(--color-text-sub);
+  line-height: 1.5;
+  max-width: 280px;
+}
+.btn-primary {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, var(--color-indigo), var(--color-indigo-dark));
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius-button);
+  cursor: pointer;
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition-bounce);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.btn-primary:active {
+  transform: scale(0.96);
+}
+
+/* 2. Login Screen */
+.form-group {
+  margin-bottom: 16px;
+  text-align: left;
+}
+.form-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-sub);
+  margin-bottom: 6px;
+  display: block;
+}
+.form-input {
+  width: 100%;
+  padding: 16px;
+  background: #F1F5F9;
+  border: 1.5px solid transparent;
+  border-radius: 18px;
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--color-text-main);
+  outline: none;
+  transition: var(--transition-fast);
+}
+.form-input:focus {
+  background: white;
+  border-color: var(--color-indigo);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+}
+
+/* 3. Home Dashboard */
+.welcome-banner {
+  background: linear-gradient(135deg, var(--color-indigo), #4F46E5);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.welcome-banner::after {
+  content: '🎓';
+  position: absolute;
+  right: -10px;
+  bottom: -15px;
+  font-size: 90px;
+  opacity: 0.25;
+}
+.welcome-title {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+.welcome-sub {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+/* Unit 2 Studying Tracker Card */
+.study-tracker-card {
+  background: linear-gradient(135deg, #ECFDF5, #D1FAE5);
+  border: 1px solid var(--color-mint);
+}
+.study-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--color-mint-dark);
+  color: white;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.study-count-num {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--color-text-main);
+}
+.study-avatars {
+  display: flex;
+  margin-top: 10px;
+  align-items: center;
+}
+.avatar-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid white;
+  margin-left: -8px;
+  background-size: cover;
+  background-position: center;
+}
+.avatar-circle:first-child {
+  margin-left: 0;
+}
+
+/* Ongoing Class Pill Card */
+.current-class-card {
+  background: linear-gradient(135deg, var(--color-sky-light), #DBEAFE);
+  border-left: 6px solid var(--color-sky);
+}
+
+/* Birthday Reminder Pills */
+.birthday-pill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--color-lavender-light);
+  border: 1px solid var(--color-lavender);
+  padding: 12px 18px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+/* Shortcuts Grid */
+.shortcuts-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.shortcut-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-text-main);
+  cursor: pointer;
+}
+.shortcut-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: white;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-bounce);
+}
+.shortcut-item:active .shortcut-icon {
+  transform: scale(0.9);
+}
+
+/* Floating Action Button (FAB) for Instant Push Notifications */
+.fab-btn {
+  position: absolute;
+  bottom: 104px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #EF4444, #F43F5E);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4);
+  border: none;
+  cursor: pointer;
+  z-index: 92;
+  transition: var(--transition-bounce);
+}
+.fab-btn:active {
+  transform: scale(0.9);
+}
+
+/* 4. Timetable Screen */
+.day-selector {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 18px;
+}
+.day-selector::-webkit-scrollbar { display: none; }
+.day-chip {
+  padding: 10px 18px;
+  border-radius: 18px;
+  background: white;
+  border: 1px solid var(--color-border);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-sub);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.day-chip.active {
+  background: var(--color-indigo);
+  color: white;
+  border-color: var(--color-indigo);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Timetable Period Item */
+.period-card {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.time-col {
+  width: 70px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-text-sub);
+  text-align: right;
+}
+.subject-col {
+  flex: 1;
+  background: white;
+  padding: 16px;
+  border-radius: 20px;
+  border-left: 5px solid var(--color-indigo);
+  box-shadow: var(--shadow-sm);
+}
+
+/* 5. Assignments Screen */
+.tabs-header {
+  display: flex;
+  background: #E2E8F0;
+  padding: 4px;
+  border-radius: 18px;
+  margin-bottom: 18px;
+}
+.tab-btn {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-sub);
+  border-radius: 14px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+.tab-btn.active {
+  background: white;
+  color: var(--color-text-main);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Priority Badges */
+.badge-urgent {
+  background: #FEE2E2;
+  color: #DC2626;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 700;
+}
+.badge-high {
+  background: #FEF3C7;
+  color: #D97706;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 700;
+}
+.badge-normal {
+  background: #E0E7FF;
+  color: #4338CA;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* 6. Notes Screen */
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  border: 1px solid var(--color-border);
+  padding: 12px 18px;
+  border-radius: 20px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow-sm);
+}
+.search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+/* Notes Folder Grid */
+.folder-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.folder-card {
+  background: white;
+  padding: 18px;
+  border-radius: 24px;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: var(--transition-bounce);
+}
+.folder-card:active {
+  transform: scale(0.95);
+}
+
+/* 8. Class Chat (Instagram Vibe) */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.chat-bubble {
+  max-width: 82%;
+  padding: 14px 18px;
+  border-radius: 22px;
+  font-size: 14px;
+  line-height: 1.45;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+.chat-bubble.other {
+  background: white;
+  border-bottom-left-radius: 6px;
+  align-self: flex-start;
+  border: 1px solid var(--color-border);
+}
+.chat-bubble.me {
+  background: linear-gradient(135deg, var(--color-indigo), var(--color-indigo-dark));
+  color: white;
+  border-bottom-right-radius: 6px;
+  align-self: flex-end;
+}
+.chat-sender {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-indigo);
+  margin-bottom: 4px;
+}
+.chat-bubble.me .chat-sender {
+  color: #C7D2FE;
+}
+
+/* Instant Broadcast Alert Banner Pill inside Chat */
+.broadcast-alert-card {
+  background: linear-gradient(135deg, #FEF2F2, #FEE2E2);
+  border: 2px solid #EF4444;
+  border-radius: 22px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  animation: pulseGlow 2s infinite;
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 10px rgba(239, 68, 68, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.5); }
+}
+
+/* Poll Component */
+.poll-card {
+  background: white;
+  border-radius: 22px;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+}
+.poll-option {
+  position: relative;
+  background: #F1F5F9;
+  border-radius: 14px;
+  padding: 12px;
+  margin-top: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 600;
+}
+.poll-progress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: var(--color-lavender);
+  opacity: 0.45;
+  transition: width 0.5s ease;
+}
+
+/* Chat Input Bar */
+.chat-input-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  padding: 10px 14px;
+  border-radius: 28px;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  margin-top: 12px;
+}
+.chat-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+/* 10. Class Directory Cards */
+.directory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+.student-card {
+  background: white;
+  border-radius: 24px;
+  padding: 16px;
+  text-align: center;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+.student-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  margin: 0 auto 10px auto;
+  background-size: cover;
+  background-position: center;
+  border: 3px solid var(--color-indigo-light);
+}
+
+/* Modals & Bottom Drawers */
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(8px);
+  z-index: 200;
+  display: none;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+.modal-overlay.active {
+  display: flex;
+  animation: fadeIn 0.25s ease-out;
+}
+.modal-drawer {
+  background: white;
+  border-top-left-radius: 36px;
+  border-top-right-radius: 36px;
+  padding: 28px 24px 34px 24px;
+  box-shadow: var(--shadow-lg);
+  animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+/* Toast Push Notification Banner - Optimized for Top Safe Area */
+.push-banner {
+  position: absolute;
+  top: 52px;
+  left: 14px;
+  right: 14px;
+  background: linear-gradient(135deg, #0F172A, #1E293B);
+  color: white;
+  padding: 12px 16px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+  z-index: 350;
+  transform: translateY(-220px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.35s ease;
+}
+.push-banner.show {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.push-banner-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+  line-height: 1.35;
+  white-space: normal;
+  word-break: break-word;
+}
+.admin-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(135deg, #EF4444, #DC2626);
+  color: white;
+  padding: 3px 8px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+

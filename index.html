@@ -1,0 +1,1521 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Clanect - Classroom Mobile App</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#6366F1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="app.js"></script>
+  <style>
+
+/* Clanect Mobile Application - Premium iOS Design System */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+:root {
+  --color-indigo: #6366F1;
+  --color-indigo-light: #EEF2FF;
+  --color-indigo-dark: #4338CA;
+  --color-sky: #60A5FA;
+  --color-sky-light: #EFF6FF;
+  --color-mint: #6EE7B7;
+  --color-mint-light: #ECFDF5;
+  --color-mint-dark: #059669;
+  --color-lavender: #C4B5FD;
+  --color-lavender-light: #F5F3FF;
+  --color-white: #FFFFFF;
+  --color-bg: #F8FAFC;
+  --color-card-bg: #FFFFFF;
+  --color-text-main: #0F172A;
+  --color-text-sub: #64748B;
+  --color-text-muted: #94A3B8;
+  --color-border: #E2E8F0;
+  
+  --radius-card: 28px;
+  --radius-pill: 9999px;
+  --radius-button: 20px;
+  
+  --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.03);
+  --shadow-md: 0 10px 25px -5px rgba(99, 102, 241, 0.08), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+  --shadow-lg: 0 20px 35px -10px rgba(99, 102, 241, 0.15), 0 10px 15px -5px rgba(15, 23, 42, 0.06);
+  --shadow-glow: 0 0 25px rgba(99, 102, 241, 0.35);
+  
+  --font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --transition-fast: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+body {
+  font-family: var(--font-family);
+  background-color: #0f172a;
+  color: var(--color-text-main);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+  overflow-x: hidden;
+}
+
+.device-frame {
+  width: 100%;
+  max-width: 430px;
+  height: 880px;
+  background-color: var(--color-bg);
+  border-radius: 48px;
+  box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.6), inset 0 0 0 10px #1E293B;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 0;
+    background-color: var(--color-bg);
+  }
+  .device-frame {
+    max-width: 100%;
+    height: 100vh;
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+
+
+.app-header {
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(248, 250, 252, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  z-index: 90;
+  position: sticky;
+  top: 0;
+}
+
+.brand-badge {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand-logo-small {
+  width: 38px;
+  height: 38px;
+  background: linear-gradient(135deg, var(--color-indigo), var(--color-sky), var(--color-lavender));
+  background-size: 200% 200%;
+  animation: gradientShift 4s ease infinite;
+  border-radius: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 20px;
+  box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3);
+  position: relative;
+  transition: var(--transition-bounce);
+}
+.brand-logo-small i {
+  animation: iconMiniPulse 2.5s ease-in-out infinite;
+}
+@keyframes iconMiniPulse {
+  0%, 100% { transform: scale(1) rotate(0deg); }
+  50% { transform: scale(1.12) rotate(-5deg); }
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.brand-title {
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, var(--color-indigo-dark), var(--color-indigo));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.header-actions {
+  display: flex;
+  gap: 10px;
+}
+.icon-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 16px;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--color-text-main);
+  font-size: 18px;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-fast);
+  position: relative;
+}
+.icon-btn:active {
+  transform: scale(0.92);
+}
+.badge-dot {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 10px;
+  height: 10px;
+  background-color: #EF4444;
+  border: 2px solid var(--color-white);
+  border-radius: 50%;
+}
+
+.screen-container {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px 20px 100px 20px;
+  scroll-behavior: smooth;
+}
+.screen-container::-webkit-scrollbar {
+  display: none;
+}
+
+.screen {
+  display: none;
+  animation: fadeIn 0.35s ease-out;
+}
+.screen.active {
+  display: block;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.bottom-nav-container {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  height: 72px;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: 28px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  z-index: 95;
+}
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  color: var(--color-text-sub);
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition-fast);
+  padding: 8px 12px;
+  border-radius: 18px;
+}
+.nav-item i {
+  font-size: 20px;
+  transition: var(--transition-bounce);
+}
+.nav-item.active {
+  color: var(--color-indigo);
+  background: var(--color-indigo-light);
+}
+.nav-item.active i {
+  transform: translateY(-2px) scale(1.15);
+}
+
+.card {
+  background: var(--color-card-bg);
+  border-radius: var(--radius-card);
+  padding: 22px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid rgba(226, 232, 240, 0.7);
+  transition: var(--transition-fast);
+  position: relative;
+  overflow: hidden;
+}
+.card-hover:active {
+  transform: scale(0.98);
+}
+
+.section-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--color-text-main);
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.see-all {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-indigo);
+  cursor: pointer;
+}
+
+.splash-wrapper {
+  min-height: 720px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 20px;
+  text-align: center;
+  background: linear-gradient(180deg, #EEF2FF 0%, #F8FAFC 100%);
+}
+.splash-content {
+  margin-auto: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.splash-icon {
+  width: 120px;
+  height: 120px;
+  background: linear-gradient(135deg, var(--color-indigo), var(--color-sky), var(--color-lavender));
+  background-size: 200% 200%;
+  animation: gradientShift 5s ease infinite, float3DTilt 4s ease-in-out infinite;
+  border-radius: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 60px;
+  color: white;
+  margin-bottom: 32px;
+  position: relative;
+  box-shadow: 0 15px 35px rgba(99, 102, 241, 0.4), 0 0 50px rgba(99, 102, 241, 0.25);
+  cursor: pointer;
+  transition: var(--transition-bounce);
+}
+
+.splash-icon::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: -6px;
+  right: -6px;
+  bottom: -6px;
+  border-radius: 44px;
+  background: linear-gradient(45deg, #6366F1, #6EE7B7, #60A5FA, #C4B5FD, #6366F1);
+  background-size: 300% 300%;
+  z-index: -1;
+  animation: auraRotate 4s linear infinite;
+  opacity: 0.85;
+  filter: blur(2px);
+}
+
+.splash-icon::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  border-radius: 40px;
+  background: rgba(99, 102, 241, 0.4);
+  z-index: -2;
+  animation: pulseHalo 2.5s ease-out infinite;
+}
+
+.splash-icon i {
+  animation: iconGlowPulse 2.5s ease-in-out infinite;
+  filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25));
+}
+
+.splash-icon:active {
+  transform: scale(0.92) rotate(-6deg);
+}
+
+@keyframes float3DTilt {
+  0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+  25% { transform: translateY(-12px) rotate(-3deg) scale(1.03); }
+  50% { transform: translateY(-16px) rotate(0deg) scale(1.05); }
+  75% { transform: translateY(-8px) rotate(3deg) scale(1.02); }
+}
+
+@keyframes auraRotate {
+  0% { background-position: 0% 50%; transform: rotate(0deg); }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; transform: rotate(360deg); }
+}
+
+@keyframes pulseHalo {
+  0% { transform: scale(1); opacity: 0.8; }
+  100% { transform: scale(1.45); opacity: 0; }
+}
+
+@keyframes iconGlowPulse {
+  0%, 100% { transform: scale(1) rotate(0deg); filter: drop-shadow(0 4px 10px rgba(0, 0, 0, 0.25)); }
+  50% { transform: scale(1.18) rotate(-8deg); filter: drop-shadow(0 8px 20px rgba(255, 255, 255, 0.8)); }
+}
+
+.splash-title {
+  font-size: 38px;
+  font-weight: 800;
+  color: var(--color-text-main);
+  letter-spacing: -1px;
+  margin-bottom: 10px;
+}
+.splash-subtitle {
+  font-size: 16px;
+  color: var(--color-text-sub);
+  line-height: 1.5;
+  max-width: 280px;
+}
+.btn-primary {
+  width: 100%;
+  padding: 18px;
+  background: linear-gradient(135deg, var(--color-indigo), var(--color-indigo-dark));
+  color: white;
+  font-size: 16px;
+  font-weight: 700;
+  border: none;
+  border-radius: var(--radius-button);
+  cursor: pointer;
+  box-shadow: var(--shadow-lg);
+  transition: var(--transition-bounce);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.btn-primary:active {
+  transform: scale(0.96);
+}
+
+.form-group {
+  margin-bottom: 16px;
+  text-align: left;
+}
+.form-label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-sub);
+  margin-bottom: 6px;
+  display: block;
+}
+.form-input {
+  width: 100%;
+  padding: 16px;
+  background: #F1F5F9;
+  border: 1.5px solid transparent;
+  border-radius: 18px;
+  font-size: 15px;
+  font-family: inherit;
+  color: var(--color-text-main);
+  outline: none;
+  transition: var(--transition-fast);
+}
+.form-input:focus {
+  background: white;
+  border-color: var(--color-indigo);
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.15);
+}
+
+.welcome-banner {
+  background: linear-gradient(135deg, var(--color-indigo), #4F46E5);
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.welcome-banner::after {
+  content: '🎓';
+  position: absolute;
+  right: -10px;
+  bottom: -15px;
+  font-size: 90px;
+  opacity: 0.25;
+}
+.welcome-title {
+  font-size: 24px;
+  font-weight: 800;
+  margin-bottom: 6px;
+}
+.welcome-sub {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+.study-tracker-card {
+  background: linear-gradient(135deg, #ECFDF5, #D1FAE5);
+  border: 1px solid var(--color-mint);
+}
+.study-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--color-mint-dark);
+  color: white;
+  border-radius: var(--radius-pill);
+  font-size: 12px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+.study-count-num {
+  font-size: 32px;
+  font-weight: 800;
+  color: var(--color-text-main);
+}
+.study-avatars {
+  display: flex;
+  margin-top: 10px;
+  align-items: center;
+}
+.avatar-circle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid white;
+  margin-left: -8px;
+  background-size: cover;
+  background-position: center;
+}
+.avatar-circle:first-child {
+  margin-left: 0;
+}
+
+.current-class-card {
+  background: linear-gradient(135deg, var(--color-sky-light), #DBEAFE);
+  border-left: 6px solid var(--color-sky);
+}
+
+.birthday-pill {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--color-lavender-light);
+  border: 1px solid var(--color-lavender);
+  padding: 12px 18px;
+  border-radius: 20px;
+  margin-bottom: 12px;
+}
+
+.shortcuts-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.shortcut-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-text-main);
+  cursor: pointer;
+}
+.shortcut-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  color: white;
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition-bounce);
+}
+.shortcut-item:active .shortcut-icon {
+  transform: scale(0.9);
+}
+
+.fab-btn {
+  position: absolute;
+  bottom: 104px;
+  right: 24px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #EF4444, #F43F5E);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 26px;
+  box-shadow: 0 10px 25px rgba(239, 68, 68, 0.4);
+  border: none;
+  cursor: pointer;
+  z-index: 92;
+  transition: var(--transition-bounce);
+}
+.fab-btn:active {
+  transform: scale(0.9);
+}
+
+.day-selector {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding-bottom: 8px;
+  margin-bottom: 18px;
+}
+.day-selector::-webkit-scrollbar { display: none; }
+.day-chip {
+  padding: 10px 18px;
+  border-radius: 18px;
+  background: white;
+  border: 1px solid var(--color-border);
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-sub);
+  cursor: pointer;
+  white-space: nowrap;
+}
+.day-chip.active {
+  background: var(--color-indigo);
+  color: white;
+  border-color: var(--color-indigo);
+  box-shadow: var(--shadow-sm);
+}
+
+.period-card {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.time-col {
+  width: 70px;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--color-text-sub);
+  text-align: right;
+}
+.subject-col {
+  flex: 1;
+  background: white;
+  padding: 16px;
+  border-radius: 20px;
+  border-left: 5px solid var(--color-indigo);
+  box-shadow: var(--shadow-sm);
+}
+
+.tabs-header {
+  display: flex;
+  background: #E2E8F0;
+  padding: 4px;
+  border-radius: 18px;
+  margin-bottom: 18px;
+}
+.tab-btn {
+  flex: 1;
+  padding: 10px;
+  text-align: center;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--color-text-sub);
+  border-radius: 14px;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+}
+.tab-btn.active {
+  background: white;
+  color: var(--color-text-main);
+  box-shadow: var(--shadow-sm);
+}
+
+.badge-urgent {
+  background: #FEE2E2;
+  color: #DC2626;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 700;
+}
+.badge-high {
+  background: #FEF3C7;
+  color: #D97706;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 700;
+}
+.badge-normal {
+  background: #E0E7FF;
+  color: #4338CA;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  border: 1px solid var(--color-border);
+  padding: 12px 18px;
+  border-radius: 20px;
+  margin-bottom: 18px;
+  box-shadow: var(--shadow-sm);
+}
+.search-input {
+  border: none;
+  outline: none;
+  background: transparent;
+  width: 100%;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.folder-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-bottom: 20px;
+}
+.folder-card {
+  background: white;
+  padding: 18px;
+  border-radius: 24px;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+  transition: var(--transition-bounce);
+}
+.folder-card:active {
+  transform: scale(0.95);
+}
+
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.chat-bubble {
+  max-width: 82%;
+  padding: 14px 18px;
+  border-radius: 22px;
+  font-size: 14px;
+  line-height: 1.45;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+}
+.chat-bubble.other {
+  background: white;
+  border-bottom-left-radius: 6px;
+  align-self: flex-start;
+  border: 1px solid var(--color-border);
+}
+.chat-bubble.me {
+  background: linear-gradient(135deg, var(--color-indigo), var(--color-indigo-dark));
+  color: white;
+  border-bottom-right-radius: 6px;
+  align-self: flex-end;
+}
+.chat-sender {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--color-indigo);
+  margin-bottom: 4px;
+}
+.chat-bubble.me .chat-sender {
+  color: #C7D2FE;
+}
+
+.broadcast-alert-card {
+  background: linear-gradient(135deg, #FEF2F2, #FEE2E2);
+  border: 2px solid #EF4444;
+  border-radius: 22px;
+  padding: 16px;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  animation: pulseGlow 2s infinite;
+}
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 10px rgba(239, 68, 68, 0.2); }
+  50% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.5); }
+}
+
+.poll-card {
+  background: white;
+  border-radius: 22px;
+  padding: 16px;
+  border: 1px solid var(--color-border);
+}
+.poll-option {
+  position: relative;
+  background: #F1F5F9;
+  border-radius: 14px;
+  padding: 12px;
+  margin-top: 8px;
+  cursor: pointer;
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 600;
+}
+.poll-progress {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: var(--color-lavender);
+  opacity: 0.45;
+  transition: width 0.5s ease;
+}
+
+.chat-input-bar {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: white;
+  padding: 10px 14px;
+  border-radius: 28px;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-md);
+  margin-top: 12px;
+}
+.chat-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: 14px;
+}
+
+.directory-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+.student-card {
+  background: white;
+  border-radius: 24px;
+  padding: 16px;
+  text-align: center;
+  border: 1px solid var(--color-border);
+  box-shadow: var(--shadow-sm);
+}
+.student-avatar {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  margin: 0 auto 10px auto;
+  background-size: cover;
+  background-position: center;
+  border: 3px solid var(--color-indigo-light);
+}
+
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(15, 23, 42, 0.55);
+  backdrop-filter: blur(8px);
+  z-index: 200;
+  display: none;
+  justify-content: flex-end;
+  flex-direction: column;
+}
+.modal-overlay.active {
+  display: flex;
+  animation: fadeIn 0.25s ease-out;
+}
+.modal-drawer {
+  background: white;
+  border-top-left-radius: 36px;
+  border-top-right-radius: 36px;
+  padding: 28px 24px 34px 24px;
+  box-shadow: var(--shadow-lg);
+  animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.push-banner {
+  position: absolute;
+  top: 20px;
+  left: 14px;
+  right: 14px;
+  background: linear-gradient(135deg, #0F172A, #1E293B);
+  color: white;
+  padding: 12px 16px;
+  border-radius: 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.45);
+  z-index: 350;
+  transform: translateY(-220px);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.35s ease;
+}
+.push-banner.show {
+  transform: translateY(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.push-banner-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: white;
+  line-height: 1.35;
+  white-space: normal;
+  word-break: break-word;
+}
+.admin-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: linear-gradient(135deg, #EF4444, #DC2626);
+  color: white;
+  padding: 3px 8px;
+  border-radius: 8px;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+}
+  </style>
+
+
+<body>
+
+  <!-- Mobile Phone Device Frame Container -->
+  <div class="device-frame">
+    
+
+
+    <!-- Push Notification Instant Toast Banner -->
+    <div id="push-banner" class="push-banner">
+      <div style="width:38px; height:38px; min-width:38px; background:#EF4444; border-radius:12px; display:flex; justify-content:center; align-items:center;">
+        <i class="fa-solid fa-bolt" style="color:white; font-size:18px;"></i>
+      </div>
+      <div style="flex:1; overflow:hidden;">
+        <div style="font-size:10px; color:#94A3B8; font-weight:800; letter-spacing:0.5px;">ADMIN INSTANT BROADCAST</div>
+        <div id="push-banner-text" class="push-banner-text">🚨 Exams are near! Start studying Unit 2 now.</div>
+      </div>
+      <button onclick="hidePushBanner()" style="background:none; border:none; color:#94A3B8; font-size:20px; cursor:pointer; padding:2px 6px;" title="Dismiss">&times;</button>
+    </div>
+
+
+    <!-- App Header (Visible after login) -->
+    <div id="app-header" class="app-header" style="display:none;">
+      <div class="brand-badge">
+        <div class="brand-logo-small"><i class="fa-solid fa-graduation-cap"></i></div>
+        <div>
+          <div style="display:flex; align-items:center; gap:6px;">
+            <div class="brand-title">Clanect</div>
+            <span id="header-admin-badge" class="admin-badge"><i class="fa-solid fa-shield"></i> ADMIN</span>
+          </div>
+          <div style="font-size:11px; color:var(--color-text-sub); font-weight:600;">CSE - Section A</div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button class="icon-btn" id="header-approvals-btn" onclick="openAdminApprovalsModal()" title="Pending Student Approvals" style="display:none; color:var(--color-indigo);">
+          <i class="fa-solid fa-user-check"></i>
+          <div id="approvals-badge-dot" class="badge-dot" style="display:none;"></div>
+        </button>
+        <button class="icon-btn" id="header-broadcast-btn" onclick="openBroadcastModal()" title="Admin Broadcast"><i class="fa-solid fa-bullhorn"></i></button>
+        <button class="icon-btn" onclick="switchScreen('announcements')">
+          <i class="fa-solid fa-bell"></i>
+          <div class="badge-dot"></div>
+        </button>
+      </div>
+
+    </div>
+
+
+    <!-- Main Screen Content Area -->
+    <div class="screen-container">
+
+      <!-- 1. SPLASH SCREEN -->
+      <div id="screen-splash" class="screen">
+        <div class="splash-wrapper">
+          <div class="splash-content">
+            <div class="splash-icon">
+              <i class="fa-solid fa-users-rays"></i>
+            </div>
+            <h1 class="splash-title">Clanect</h1>
+            <p class="splash-subtitle">Everything our class needs, in one place.</p>
+          </div>
+          <div style="width:100%;">
+            <button class="btn-primary" onclick="switchScreen('login')">
+              <span>Get Started</span>
+              <i class="fa-solid fa-arrow-right"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. REGISTRATION & LOGIN SCREEN -->
+      <div id="screen-login" class="screen active">
+
+        <div style="padding: 10px 0 20px 0;">
+          <h2 style="font-size: 26px; font-weight: 800; margin-bottom: 6px;">Classmate Registration</h2>
+          <p style="color: var(--color-text-sub); font-size: 13px; margin-bottom: 20px;">Enter your actual name & register number to request classroom access.</p>
+          
+          <div class="card">
+            <div class="form-group">
+              <label class="form-label">Full Name *</label>
+              <input type="text" class="form-input" id="user-name" value="" placeholder="e.g. Priya Sharma">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Register Number *</label>
+              <input type="text" class="form-input" id="user-reg" value="" placeholder="e.g. 312221104038">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Choose Your Avatar Icon *</label>
+              <div style="display:grid; grid-template-columns:repeat(5, 1fr); gap:10px; margin-top:8px;">
+                <button type="button" class="avatar-option active" onclick="selectRegistrationAvatar('🎓', this)">🎓</button>
+                <button type="button" class="avatar-option" onclick="selectRegistrationAvatar('💻', this)">💻</button>
+                <button type="button" class="avatar-option" onclick="selectRegistrationAvatar('🚀', this)">🚀</button>
+                <button type="button" class="avatar-option" onclick="selectRegistrationAvatar('🎨', this)">🎨</button>
+                <button type="button" class="avatar-option" onclick="selectRegistrationAvatar('🎧', this)">🎧</button>
+                <button type="button" class="avatar-option" onclick="selectRegistrationAvatar('🦊', this)">🦊</button>
+                <button type="button" class="avatar-option" onclick="selectRegistrationAvatar('🐯', this)">🐯</button>
+                <button type="button" class="avatar-option" onclick="selectRegistrationAvatar('👾', this)">👾</button>
+                <button type="button" class="avatar-option" onclick="selectRegistrationAvatar('⚽', this)">⚽</button>
+                <button type="button" class="avatar-option" onclick="selectRegistrationAvatar('⚡', this)">⚡</button>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Semester & Dept</label>
+              <input type="text" class="form-input" value="Sem 5 - Computer Science & Engineering" readonly>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label">Passcode</label>
+              <input type="password" class="form-input" id="user-pass" value="" placeholder="Set a passcode">
+            </div>
+
+
+
+            <button class="btn-primary" style="margin-top: 14px;" onclick="registerNewStudent()">
+              <span>Submit Registration</span>
+              <i class="fa-solid fa-paper-plane"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PENDING APPROVAL SCREEN -->
+      <div id="screen-pending" class="screen">
+        <div style="text-align:center; padding:50px 20px;">
+          <div style="width:90px; height:90px; border-radius:50%; background:var(--color-indigo-light); display:flex; justify-content:center; align-items:center; margin:0 auto 20px auto; font-size:42px; color:var(--color-indigo);">
+            <i class="fa-solid fa-hourglass-half"></i>
+          </div>
+          <h2 style="font-size:24px; font-weight:800; margin-bottom:8px;">Registration Submitted</h2>
+          <p style="color:var(--color-text-sub); font-size:13px; line-height:1.5; max-width:300px; margin:0 auto 20px auto;">
+            Your registration is currently <b>Awaiting Class Rep (Admin) Approval</b>. Your app will unlock live automatically once approved!
+          </p>
+          <div style="background:white; padding:16px; border-radius:20px; border:1px solid var(--color-border); font-size:13px; font-weight:700; color:#D97706; display:inline-block;">
+            Status: ⏳ Pending Admin Verification
+          </div>
+          <button onclick="switchScreen('login')" style="margin-top:30px; background:none; border:none; color:var(--color-indigo); font-weight:700; font-size:13px; cursor:pointer;">
+            ← Back to Registration
+          </button>
+        </div>
+      </div>
+
+
+      <!-- 3. HOME DASHBOARD SCREEN -->
+      <div id="screen-home" class="screen">
+        <!-- Welcome Card -->
+        <div class="card welcome-banner">
+          <div class="welcome-sub">Welcome back,</div>
+          <div class="welcome-title" id="home-user-display">Alex Rivera 👋</div>
+          <div style="display:flex; gap:16px; margin-top:14px; align-items:center;">
+            <div style="background:rgba(255,255,255,0.25); backdrop-filter:blur(8px); padding:6px 14px; border-radius:14px; font-size:12px; font-weight:700;">
+              ⚡ Attendance: 92.4%
+            </div>
+            <div style="background:rgba(255,255,255,0.25); backdrop-filter:blur(8px); padding:6px 14px; border-radius:14px; font-size:12px; font-weight:700;">
+              🔥 5 Day Streak
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Unit 2 Study Tracker Widget -->
+        <div class="card study-tracker-card">
+          <div class="study-badge">
+            <i class="fa-solid fa-fire"></i> EXAM PREP LIVE TRACKER
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <div style="font-size:14px; font-weight:700; color:var(--color-mint-dark);">Unit 2 Data Structures</div>
+              <div style="font-size:12px; color:var(--color-text-sub); margin-top:2px;">Who started studying?</div>
+            </div>
+            <div class="study-count-num" id="study-count-display">14 / 45</div>
+          </div>
+          
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px;">
+            <div class="study-avatars">
+              <div class="avatar-circle" style="background-image:url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80');"></div>
+              <div class="avatar-circle" style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80');"></div>
+              <div class="avatar-circle" style="background-image:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80');"></div>
+              <div style="font-size:11px; font-weight:700; color:var(--color-mint-dark); margin-left:10px;">+11 classmates</div>
+            </div>
+            <button onclick="openStudyHelpModal()" style="padding:8px 14px; background:var(--color-mint-dark); color:white; border:none; border-radius:14px; font-size:12px; font-weight:700; cursor:pointer;">
+              I Started Unit 2 <i class="fa-solid fa-check"></i>
+            </button>
+          </div>
+        </div>
+
+        <!-- Ongoing Class Highlight -->
+        <div class="card current-class-card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <span style="font-size:11px; font-weight:800; color:#1E40AF; text-transform:uppercase; letter-spacing:0.5px;">ONGOING NOW • PERIOD 3</span>
+            <span style="font-size:12px; font-weight:700; color:#1E40AF; background:white; padding:2px 8px; border-radius:10px;">Hall 304</span>
+          </div>
+          <div style="font-size:18px; font-weight:800; color:#1E3A8A;">Operating Systems</div>
+          <div style="font-size:13px; color:#3B82F6; font-weight:600; margin-top:2px;">Prof. R. Sundaram • 11:15 AM - 12:15 PM</div>
+        </div>
+
+        <!-- Quick Shortcuts -->
+        <div class="section-title">
+          <span>Quick Access</span>
+        </div>
+        <div class="shortcuts-grid">
+          <div class="shortcut-item" onclick="switchScreen('timetable')">
+            <div class="shortcut-icon" style="background:linear-gradient(135deg, #6366F1, #4F46E5);"><i class="fa-solid fa-calendar-days"></i></div>
+            <span>Schedule</span>
+          </div>
+          <div class="shortcut-item" onclick="switchScreen('notes')">
+            <div class="shortcut-icon" style="background:linear-gradient(135deg, #60A5FA, #2563EB);"><i class="fa-solid fa-book-open"></i></div>
+            <span>Notes</span>
+          </div>
+          <div class="shortcut-item" onclick="switchScreen('chat')">
+            <div class="shortcut-icon" style="background:linear-gradient(135deg, #6EE7B7, #059669);"><i class="fa-solid fa-comments"></i></div>
+            <span>Class Chat</span>
+          </div>
+          <div class="shortcut-item" onclick="switchScreen('directory')">
+            <div class="shortcut-icon" style="background:linear-gradient(135deg, #C4B5FD, #7C3AED);"><i class="fa-solid fa-address-book"></i></div>
+            <span>Classmates</span>
+          </div>
+        </div>
+
+        <!-- Birthday Alert Container -->
+        <div id="birthday-alert-container"></div>
+
+        <!-- Upcoming Assignments -->
+        <div class="section-title">
+          <span>Upcoming Deadlines</span>
+          <span class="see-all" onclick="switchScreen('assignments')">View All</span>
+        </div>
+        <div class="card">
+          <div style="text-align:center; padding:12px; color:var(--color-text-sub); font-size:13px;">No upcoming deadlines posted yet.</div>
+        </div>
+      </div>
+
+      <!-- 4. TIMETABLE SCREEN -->
+      <div id="screen-timetable" class="screen">
+        <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 14px;">Class Schedule</h2>
+        
+        <!-- Day Selector Tabs -->
+        <div class="day-selector">
+          <div class="day-chip active" onclick="selectDay(this, 'Mon')">Monday</div>
+          <div class="day-chip" onclick="selectDay(this, 'Tue')">Tuesday</div>
+          <div class="day-chip" onclick="selectDay(this, 'Wed')">Wednesday</div>
+          <div class="day-chip" onclick="selectDay(this, 'Thu')">Thursday</div>
+          <div class="day-chip" onclick="selectDay(this, 'Fri')">Friday</div>
+        </div>
+
+        <!-- Schedule Period List -->
+        <div id="schedule-list-container">
+          <div style="text-align:center; padding:40px 20px; color:var(--color-text-sub); font-size:14px;">
+            No schedule added for this day yet.<br>
+            <span style="font-size:12px; color:var(--color-text-muted);">Class Rep will update it soon.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. ASSIGNMENTS SCREEN -->
+      <div id="screen-assignments" class="screen">
+        <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 14px;">Assignments</h2>
+
+        <div class="tabs-header">
+          <button class="tab-btn active" onclick="switchTab(this)">Pending (3)</button>
+          <button class="tab-btn" onclick="switchTab(this)">Submitted (8)</button>
+          <button class="tab-btn" onclick="switchTab(this)">Graded (5)</button>
+        </div>
+
+        <div id="assignments-list-container">
+          <div style="text-align:center; padding:40px 20px; color:var(--color-text-sub); font-size:14px;">
+            No assignments posted yet.
+          </div>
+        </div>
+      </div>
+
+      <!-- 6. NOTES & STUDY MATERIALS SCREEN -->
+      <div id="screen-notes" class="screen">
+        <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 14px;">Notes & Materials</h2>
+
+        <div class="search-bar">
+          <i class="fa-solid fa-magnifying-glass" style="color:var(--color-text-muted);"></i>
+          <input type="text" class="search-input" placeholder="Search Unit 2 notes, PDFs, slides...">
+        </div>
+
+        <div style="text-align:center; padding:40px 20px; color:var(--color-text-sub); font-size:14px;">
+          No study materials uploaded yet.
+        </div>
+      </div>
+
+      <!-- 7. ANNOUNCEMENTS SCREEN -->
+      <div id="screen-announcements" class="screen">
+        <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 14px;">Class Announcements</h2>
+
+        <div id="announcements-list-container">
+          <div style="text-align:center; padding:40px 20px; color:var(--color-text-sub); font-size:14px;">
+            No class announcements yet.
+          </div>
+        </div>
+      </div>
+
+      <!-- 8. CLASS CHAT SCREEN (INSTAGRAM VIBE) -->
+      <div id="screen-chat" class="screen">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+          <div>
+            <h2 style="font-size: 22px; font-weight: 800;">Class Feed & Chat</h2>
+            <p style="font-size:12px; color:var(--color-text-sub);">45 classmates online</p>
+          </div>
+          <div style="display:flex; gap:6px;">
+            <button onclick="openCreatePollModal()" style="padding:8px 12px; background:var(--color-indigo); color:white; border:none; border-radius:16px; font-size:12px; font-weight:800; cursor:pointer; display:flex; align-items:center; gap:6px;">
+              <i class="fa-solid fa-square-poll-horizontal"></i> Poll
+            </button>
+            <button id="header-broadcast-btn-chat" onclick="openBroadcastModal()" style="padding:8px 12px; background:#EF4444; color:white; border:none; border-radius:16px; font-size:12px; font-weight:800; cursor:pointer; display:flex; align-items:center; gap:4px;">
+              <i class="fa-solid fa-bolt"></i> Alert
+            </button>
+          </div>
+        </div>
+
+        <!-- Chat Bubble Feed -->
+        <div class="chat-container" id="chat-messages-box">
+          <div id="chat-empty-state" style="text-align:center; padding:40px 20px; color:var(--color-text-sub); font-size:14px; width:100%;">
+            No messages in class feed yet. Start the conversation!
+          </div>
+        </div>
+
+        <!-- Chat Input Bar -->
+        <div class="chat-input-bar">
+          <input type="text" class="chat-input" id="chat-input-text" placeholder="Type a message to class...">
+          <button onclick="sendChatMessage()" style="width:36px; height:36px; background:var(--color-indigo); color:white; border:none; border-radius:50%; display:flex; justify-content:center; align-items:center; cursor:pointer;">
+            <i class="fa-solid fa-paper-plane" style="font-size:14px;"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- 9. EVENTS SCREEN -->
+      <div id="screen-events" class="screen">
+        <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 14px;">Class Events</h2>
+
+        <div class="card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <span style="font-size:11px; font-weight:800; background:#E0E7FF; color:var(--color-indigo); padding:4px 10px; border-radius:12px;">WORKSHOP</span>
+            <span style="font-size:12px; color:var(--color-text-sub);">Aug 12 • 10:00 AM</span>
+          </div>
+          <div style="font-size:17px; font-weight:800;">Full-Stack AI App Workshop</div>
+          <div style="font-size:12px; color:var(--color-text-sub); margin-top:4px;">Main Auditorium • Conducted by Alumni</div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px;">
+            <span style="font-size:12px; font-weight:700; color:var(--color-mint-dark);">34 Classmates Attending</span>
+            <button onclick="toggleRSVP(this)" style="padding:8px 16px; background:var(--color-indigo); color:white; border:none; border-radius:14px; font-weight:700; font-size:12px; cursor:pointer;">RSVP Yes</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <span style="font-size:11px; font-weight:800; background:#FEF3C7; color:#D97706; padding:4px 10px; border-radius:12px;">CLASS TRIP</span>
+            <span style="font-size:12px; color:var(--color-text-sub);">Aug 25</span>
+          </div>
+          <div style="font-size:17px; font-weight:800;">Class Industrial Visit & Beach Trip 🚌</div>
+          <div style="font-size:12px; color:var(--color-text-sub); margin-top:4px;">Organized by Department Committee</div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:14px;">
+            <span style="font-size:12px; font-weight:700; color:var(--color-text-sub);">42 Going</span>
+            <button onclick="toggleRSVP(this)" style="padding:8px 16px; background:var(--color-indigo); color:white; border:none; border-radius:14px; font-weight:700; font-size:12px; cursor:pointer;">RSVP Yes</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 10. CLASS DIRECTORY SCREEN -->
+      <div id="screen-directory" class="screen">
+        <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 14px;">Class Directory</h2>
+
+        <div class="search-bar">
+          <i class="fa-solid fa-magnifying-glass" style="color:var(--color-text-muted);"></i>
+          <input type="text" class="search-input" placeholder="Search classmate name or reg no...">
+        </div>
+
+        <div class="directory-grid">
+          <div class="student-card">
+            <div class="student-avatar" style="background-image:url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80');"></div>
+            <div style="font-size:15px; font-weight:800;">Priya Sharma</div>
+            <div style="font-size:11px; color:var(--color-text-sub);">Reg: 312221104038</div>
+            <div style="margin-top:6px;"><span style="font-size:10px; background:#FEE2E2; color:#DC2626; padding:2px 8px; border-radius:10px; font-weight:800;">🎂 Birthday Today</span></div>
+            <button onclick="contactStudent('Priya Sharma', '+91 98765 43210')" style="width:100%; margin-top:10px; padding:6px; background:var(--color-indigo-light); color:var(--color-indigo); border:none; border-radius:12px; font-size:11px; font-weight:700; cursor:pointer;">Contact</button>
+          </div>
+
+          <div class="student-card">
+            <div class="student-avatar" style="background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80');"></div>
+            <div style="font-size:15px; font-weight:800;">Rohan Sharma</div>
+            <div style="font-size:11px; color:var(--color-text-sub);">Reg: 312221104045</div>
+            <div style="margin-top:6px;"><span style="font-size:10px; background:#E0E7FF; color:var(--color-indigo); padding:2px 8px; border-radius:10px; font-weight:800;">⭐ Class Rep</span></div>
+            <button onclick="contactStudent('Rohan Sharma', '+91 98765 12345')" style="width:100%; margin-top:10px; padding:6px; background:var(--color-indigo-light); color:var(--color-indigo); border:none; border-radius:12px; font-size:11px; font-weight:700; cursor:pointer;">Contact</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 11. PROFILE SCREEN -->
+      <div id="screen-profile" class="screen">
+        <div style="text-align:center; padding:10px 0 20px 0;">
+          <div style="position:relative; width:96px; height:96px; margin:0 auto 12px auto;">
+            <div id="profile-avatar-img" style="width:96px; height:96px; border-radius:50%; background-image:url('https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80'); background-size:cover; background-position:center; border:4px solid var(--color-indigo); box-shadow:var(--shadow-md);"></div>
+            <label for="avatar-file-input" style="position:absolute; bottom:0; right:0; width:32px; height:32px; background:var(--color-indigo); color:white; border-radius:50%; display:flex; justify-content:center; align-items:center; cursor:pointer; border:2px solid white; box-shadow:var(--shadow-sm);" title="Choose Profile Picture">
+              <i class="fa-solid fa-camera" style="font-size:14px;"></i>
+            </label>
+            <input type="file" id="avatar-file-input" accept="image/*" style="display:none;" onchange="uploadProfilePicture(event)">
+          </div>
+
+          <!-- Avatar Preset Quick Selection -->
+          <div style="display:flex; justify-content:center; gap:8px; margin-bottom:12px;">
+            <div onclick="selectPresetAvatar('https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80')" style="width:32px; height:32px; border-radius:50%; background-image:url('https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=100&q=80'); background-size:cover; cursor:pointer; border:2px solid white;"></div>
+            <div onclick="selectPresetAvatar('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80')" style="width:32px; height:32px; border-radius:50%; background-image:url('https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=100&q=80'); background-size:cover; cursor:pointer; border:2px solid white;"></div>
+            <div onclick="selectPresetAvatar('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80')" style="width:32px; height:32px; border-radius:50%; background-image:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=100&q=80'); background-size:cover; cursor:pointer; border:2px solid white;"></div>
+            <div onclick="selectPresetAvatar('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80')" style="width:32px; height:32px; border-radius:50%; background-image:url('https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=100&q=80'); background-size:cover; cursor:pointer; border:2px solid white;"></div>
+          </div>
+
+          <h2 style="font-size: 22px; font-weight: 800;" id="profile-name-display">Alex Rivera</h2>
+          <p style="font-size: 12px; color: var(--color-text-sub);">Register No: 312221104042</p>
+          <div style="display:inline-block; margin-top:6px; padding:4px 12px; background:var(--color-indigo-light); color:var(--color-indigo); border-radius:12px; font-size:12px; font-weight:700;">CSE - Semester 5</div>
+        </div>
+
+
+        <!-- Admin Permission Mode Toggle Card -->
+        <div class="card" style="border: 2px solid var(--color-indigo); background: var(--color-indigo-light);">
+          <div class="section-title" style="color:var(--color-indigo-dark);">
+            <span><i class="fa-solid fa-shield"></i> Class Rep (Admin) Mode</span>
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-top:8px;">
+            <div>
+              <div style="font-size:13px; font-weight:700; color:var(--color-text-main);">Admin Push Permission</div>
+              <div style="font-size:11px; color:var(--color-text-sub);">Enables Red Lightning Push Alert FAB button</div>
+            </div>
+            <input type="checkbox" id="profile-admin-toggle" checked onchange="toggleAdminRole(this.checked)" style="accent-color:var(--color-indigo); transform:scale(1.4); cursor:pointer;">
+          </div>
+        </div>
+
+        <!-- Custom Avatar Upload Card -->
+        <div class="card">
+          <div class="section-title"><span>Choose Profile Picture</span></div>
+          <div style="display:flex; gap:12px; align-items:center; margin-top:10px;">
+            <label for="avatar-file-input" style="flex:1; padding:12px; background:var(--color-indigo); color:white; border-radius:16px; text-align:center; font-size:13px; font-weight:700; cursor:pointer;">
+              <i class="fa-solid fa-camera"></i> Upload Photo from Device
+            </label>
+          </div>
+          <div style="font-size:12px; font-weight:700; color:var(--color-text-sub); margin:14px 0 8px 0;">Or Tap Avatar Preset:</div>
+          <div style="display:flex; justify-content:space-around;">
+            <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?auto=format&fit=crop&w=200&q=80" onclick="selectPresetAvatar(this.src)" style="width:44px; height:44px; border-radius:50%; border:3px solid var(--color-indigo); cursor:pointer;" title="Avatar 1">
+            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=200&q=80" onclick="selectPresetAvatar(this.src)" style="width:44px; height:44px; border-radius:50%; border:3px solid var(--color-sky); cursor:pointer;" title="Avatar 2">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=200&q=80" onclick="selectPresetAvatar(this.src)" style="width:44px; height:44px; border-radius:50%; border:3px solid var(--color-mint-dark); cursor:pointer;" title="Avatar 3">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=200&q=80" onclick="selectPresetAvatar(this.src)" style="width:44px; height:44px; border-radius:50%; border:3px solid var(--color-lavender); cursor:pointer;" title="Avatar 4">
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="section-title"><span>Academic Summary</span></div>
+          <div style="display:flex; justify-content:space-between; text-align:center; margin-top:10px;">
+            <div>
+              <div style="font-size:20px; font-weight:800; color:var(--color-indigo);">92.4%</div>
+              <div style="font-size:11px; color:var(--color-text-sub);">Attendance</div>
+            </div>
+            <div>
+              <div style="font-size:20px; font-weight:800; color:var(--color-mint-dark);">8.92</div>
+              <div style="font-size:11px; color:var(--color-text-sub);">CGPA</div>
+            </div>
+            <div>
+              <div style="font-size:20px; font-weight:800; color:var(--color-sky);">14</div>
+              <div style="font-size:11px; color:var(--color-text-sub);">Notes Saved</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="section-title"><span>App Settings</span></div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0; border-bottom:1px solid #F1F5F9;">
+            <span style="font-size:14px; font-weight:600;">Instant Push Notifications</span>
+            <input type="checkbox" checked style="accent-color:var(--color-indigo); transform:scale(1.3);">
+          </div>
+          <div style="display:flex; justify-content:space-between; align-items:center; padding:10px 0;">
+            <span style="font-size:14px; font-weight:600;">Canteen Alert Sounds</span>
+            <input type="checkbox" checked style="accent-color:var(--color-indigo); transform:scale(1.3);">
+          </div>
+        </div>
+
+
+        <button onclick="switchScreen('splash')" style="width:100%; padding:14px; background:#FEE2E2; color:#DC2626; border:none; border-radius:18px; font-size:14px; font-weight:700; cursor:pointer; margin-top:10px;">
+          Log Out
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Floating Action Button (FAB) for Instant Push Notification Alert -->
+    <button id="fab-push" class="fab-btn" onclick="openBroadcastModal()" style="display:none;" title="Send Instant Push Alert to Class">
+      <i class="fa-solid fa-bolt"></i>
+    </button>
+
+    <!-- Floating Bottom Navigation Bar (Visible after login) -->
+    <div id="bottom-nav" class="bottom-nav-container" style="display:none;">
+      <div class="nav-item active" id="nav-home" onclick="switchScreen('home')">
+        <i class="fa-solid fa-house"></i>
+        <span>Home</span>
+      </div>
+      <div class="nav-item" id="nav-timetable" onclick="switchScreen('timetable')">
+        <i class="fa-solid fa-calendar-days"></i>
+        <span>Schedule</span>
+      </div>
+      <div class="nav-item" id="nav-notes" onclick="switchScreen('notes')">
+        <i class="fa-solid fa-book-open"></i>
+        <span>Notes</span>
+      </div>
+      <div class="nav-item" id="nav-chat" onclick="switchScreen('chat')">
+        <i class="fa-solid fa-comments"></i>
+        <span>Chat</span>
+      </div>
+      <div class="nav-item" id="nav-profile" onclick="switchScreen('profile')">
+        <i class="fa-solid fa-user"></i>
+        <span>Profile</span>
+      </div>
+    </div>
+
+    <!-- MODAL 1: Instant Push Broadcast Drawer -->
+    <div id="modal-broadcast" class="modal-overlay" onclick="closeModalsOnOverlay(event)">
+      <div class="modal-drawer">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+          <div>
+            <h3 style="font-size:20px; font-weight:800; color:#EF4444;">⚡ Instant Push Broadcast</h3>
+            <p style="font-size:12px; color:var(--color-text-sub);">Sends instant alert notification sound to all 45 classmates.</p>
+          </div>
+          <button onclick="closeModals()" style="background:none; border:none; font-size:20px; color:var(--color-text-sub); cursor:pointer;">&times;</button>
+        </div>
+
+        <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:18px;">
+          <button onclick="triggerBroadcast('🚨 Exams are near! Start studying Unit 2 now.')" style="padding:14px; background:#FEF2F2; border:1px solid #FCA5A5; border-radius:16px; text-align:left; font-size:13px; font-weight:700; color:#991B1B; cursor:pointer;">
+            🚨 "Exams are near! Start studying Unit 2 now."
+          </button>
+          <button onclick="triggerBroadcast('🍔 Hey guys! Come near Canteen now for hangout!')" style="padding:14px; background:#FEF3C7; border:1px solid #FDE68A; border-radius:16px; text-align:left; font-size:13px; font-weight:700; color:#92400E; cursor:pointer;">
+            🍔 "Hey guys! Come near Canteen now for hangout!"
+          </button>
+          <button onclick="triggerBroadcast('💻 Lab Record Submission deadline extended to 4:00 PM!')" style="padding:14px; background:#E0E7FF; border:1px solid #A5B4FC; border-radius:16px; text-align:left; font-size:13px; font-weight:700; color:#3730A3; cursor:pointer;">
+            💻 "Lab Record Submission deadline extended to 4:00 PM!"
+          </button>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label">Or Type Custom Broadcast Message</label>
+          <input type="text" id="custom-broadcast-text" class="form-input" placeholder="e.g. Free class in Hall 304! Come fast!">
+        </div>
+        <button class="btn-primary" style="background:#EF4444;" onclick="sendCustomBroadcast()">
+          <span>Broadcast Now</span> <i class="fa-solid fa-paper-plane"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- MODAL 2: Unit 2 Study Tracker & Helper Drawer -->
+    <div id="modal-study" class="modal-overlay" onclick="closeModalsOnOverlay(event)">
+      <div class="modal-drawer">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+          <div>
+            <h3 style="font-size:20px; font-weight:800; color:var(--color-mint-dark);">📚 Unit 2 Study Tracker</h3>
+            <p style="font-size:12px; color:var(--color-text-sub);">Track peer progress & get study help from classmates.</p>
+          </div>
+          <button onclick="closeModals()" style="background:none; border:none; font-size:20px; color:var(--color-text-sub); cursor:pointer;">&times;</button>
+        </div>
+
+        <div style="background:var(--color-mint-light); border:1px solid var(--color-mint); padding:16px; border-radius:20px; margin-bottom:16px; text-align:center;">
+          <div style="font-size:13px; font-weight:700; color:var(--color-mint-dark);">CURRENT STATUS</div>
+          <div style="font-size:24px; font-weight:800; color:var(--color-text-main); margin-top:2px;" id="modal-study-status">You are studying Unit 2!</div>
+        </div>
+
+        <div style="display:flex; gap:10px; margin-bottom:16px;">
+          <button onclick="incrementStudyCount()" class="btn-primary" style="background:var(--color-mint-dark); flex:1;">
+            I Started Unit 2 <i class="fa-solid fa-check"></i>
+          </button>
+          <button onclick="requestStudyHelp()" style="padding:14px; background:var(--color-indigo-light); color:var(--color-indigo); border:none; border-radius:18px; font-weight:700; font-size:13px; cursor:pointer;">
+            Need Help <i class="fa-solid fa-hand-holding-hand"></i>
+          </button>
+        </div>
+
+        <div style="font-size:13px; font-weight:700; margin-bottom:8px;">Classmates Currently Studying Unit 2:</div>
+        <div style="max-height:160px; overflow-y:auto; font-size:13px; color:var(--color-text-sub);">
+          <div style="padding:6px 0; border-bottom:1px solid #F1F5F9;">• Priya Sharma (Unit 2 Trees & Graphs)</div>
+          <div style="padding:6px 0; border-bottom:1px solid #F1F5F9;">• Rohan Sharma (Completed 80%)</div>
+          <div style="padding:6px 0; border-bottom:1px solid #F1F5F9;">• Kavya M (Solving previous year Qs)</div>
+          <div style="padding:6px 0;">• Vikram S (Preparing short notes)</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL 3: Admin Student Approvals Drawer -->
+    <div id="modal-admin-approvals" class="modal-overlay" onclick="closeModalsOnOverlay(event)">
+      <div class="modal-drawer">
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:16px;">
+          <div>
+            <h3 style="font-size:20px; font-weight:800; color:var(--color-indigo);">🛡️ Pending Student Approvals</h3>
+            <p style="font-size:12px; color:var(--color-text-sub);">Approve classmate registrations to grant classroom access.</p>
+          </div>
+          <button onclick="closeModals()" style="background:none; border:none; font-size:20px; color:var(--color-text-sub); cursor:pointer;">&times;</button>
+        </div>
+
+        <div id="admin-pending-list-container" style="display:flex; flex-direction:column; gap:12px; max-height:260px; overflow-y:auto;">
+          <!-- Dynamically populated by app.js -->
+          <div style="text-align:center; padding:20px; color:var(--color-text-sub); font-size:13px;">No pending student registrations.</div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <!-- Google Firebase Realtime Cloud SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.8.0/firebase-database-compat.js"></script>
+  <script src="app.js?v=4"></script>
+</body>
+</html>
+
+

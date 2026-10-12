@@ -1,0 +1,9 @@
+{
+  "version": 2,
+  "rewrites": [
+    { "source": "/api/register", "destination": "/api/register.js" },
+    { "source": "/api/approve", "destination": "/api/approve.js" },
+    { "source": "/api/chat", "destination": "/api/chat.js" },
+    { "source": "/api/broadcast", "destination": "/api/broadcast.js" }
+  ]
+}
